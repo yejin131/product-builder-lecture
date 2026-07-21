@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 6/45 행운 번호 추천기</title>
+    <meta name="description" content="AI 스타일의 깔끔하고 현대적인 로또 6/45 행운의 번호 추천 웹사이트. 한 번에 5세트의 중복 없는 당첨 번호를 생성해보세요.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <main class="app-container">
+        <header class="app-header">
+            <div class="badge"><i class="fa-solid fa-clover"></i> LUCKY LOTTO</div>
+            <h1>로또 번호 추천기</h1>
+            <p>오늘의 행운을 담아 중복 없는 번호 5세트를 생성합니다.</p>
+        </header>
+
+        <section class="action-section">
+            <button id="generate-btn" class="btn btn-primary">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>번호 생성하기 (5세트)</span>
+            </button>
+            <button id="copy-all-btn" class="btn btn-secondary" title="생성된 모든 번호 복사">
+                <i class="fa-regular fa-copy"></i>
+                <span>전체 복사</span>
+            </button>
+        </section>
+
+        <section class="results-section" id="results-container">
+            <!-- 5개 세트 카드가 JavaScript에 의해 동적으로 생성됩니다 -->
+            <div class="placeholder-card">
+                <i class="fa-solid fa-dice-five placeholder-icon"></i>
+                <p>위의 '번호 생성하기' 버튼을 눌러 행운의 번호를 확인해보세요!</p>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <p>본 번호는 무작위로 추출되며 당첨을 보장하지 않습니다.</p>
+        </footer>
+    </main>
+
+    <div id="toast" class="toast">번호가 클립보드에 복사되었습니다!</div>
+
+    <script src="main.js"></script>
+</body>
+</html>
