@@ -3,10 +3,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyAllBtn = document.getElementById('copy-all-btn');
     const resultsContainer = document.getElementById('results-container');
     const toast = document.getElementById('toast');
+    const themeToggleBtn = document.getElementById('theme-toggle');
 
     let currentSets = [];
 
-    // 로또 번호 6개 생성 함수 (1~45, 중복 없음, 오름차순 정렬)
+    // --- 테마 관리 (Dark / Light Mode) ---
+    function initTheme() {
+        const savedTheme = localStorage.getItem('lotto-theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            // System preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(prefersDark ? 'dark' : 'light');
+        }
+    }
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('lotto-theme', theme);
+        
+        // 아이콘 변경
+        const icon = themeToggleBtn.querySelector('i');
+        if (theme === 'dark') {
+            icon.className = 'fa-solid fa-sun';
+            themeToggleBtn.setAttribute('title', '라이트 모드로 전환');
+        } else {
+            icon.className = 'fa-solid fa-moon';
+            themeToggleBtn.setAttribute('title', '다크 모드로 전환');
+        }
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+    }
+
+    // --- 로또 번호 생성 로직 ---
     function generateSingleSet() {
         const numbers = new Set();
         while (numbers.size < 6) {
@@ -16,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return Array.from(numbers).sort((a, b) => a - b);
     }
 
-    // 5세트 번호 생성
     function generate5Sets() {
         const sets = [];
         const labels = ['A 세트', 'B 세트', 'C 세트', 'D 세트', 'E 세트'];
@@ -30,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return sets;
     }
 
-    // 번호 범위에 맞는 CSS 클래스 반환
     function getBallColorClass(number) {
         if (number <= 10) return 'ball-yellow';
         if (number <= 20) return 'ball-blue';
@@ -39,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'ball-green';
     }
 
-    // UI에 로또 세트들 렌더링
     function renderSets(sets) {
         currentSets = sets;
         resultsContainer.innerHTML = '';
@@ -60,11 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const colorClass = getBallColorClass(num);
                 ball.className = `lotto-ball ${colorClass}`;
                 
-                // 두 자릿수 포맷팅 (예: 5 -> 05)
                 const formattedNum = num < 10 ? `0${num}` : `${num}`;
                 ball.textContent = formattedNum;
 
-                // 순차적 등장 애니메이션 딜레이 설정
                 const globalDelay = (setIndex * 6 + numIndex) * 0.04;
                 ball.style.setProperty('--delay', `${globalDelay}s`);
 
@@ -77,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 토스트 알림 표시
     function showToast(message) {
         toast.textContent = message;
         toast.classList.add('show');
@@ -86,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2200);
     }
 
-    // 전체 번호 클립보드 복사
     async function copyAllNumbers() {
         if (currentSets.length === 0) {
             showToast('먼저 번호를 생성해주세요!');
@@ -106,13 +133,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event Listeners
+    // --- 초기화 및 이벤트 리스너 ---
+    initTheme();
+
+    themeToggleBtn.addEventListener('click', toggleTheme);
+
     generateBtn.addEventListener('click', () => {
-        // 모바일 터치 피드백 (지원되는 경우)
         if (navigator.vibrate) {
             navigator.vibrate(25);
         }
-
         const newSets = generate5Sets();
         renderSets(newSets);
     });
