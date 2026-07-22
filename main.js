@@ -133,6 +133,96 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- 모달 및 Formspree 제휴 문의 처리 ---
+    const openContactBtn = document.getElementById('open-contact-btn');
+    const headerContactBtn = document.getElementById('header-contact-btn');
+    const contactModal = document.getElementById('contact-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const partnershipForm = document.getElementById('partnership-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    function openModal() {
+        if (contactModal) {
+            contactModal.classList.add('active');
+            contactModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal() {
+        if (contactModal) {
+            contactModal.classList.remove('active');
+            contactModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (openContactBtn) openContactBtn.addEventListener('click', openModal);
+    if (headerContactBtn) headerContactBtn.addEventListener('click', openModal);
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && contactModal && contactModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    if (partnershipForm) {
+        partnershipForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const originalBtnContent = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> <span>전송 중...</span>';
+            
+            formStatus.className = 'form-status';
+            formStatus.style.display = 'none';
+
+            const formData = new FormData(partnershipForm);
+
+            try {
+                const response = await fetch(partnershipForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.className = 'form-status success';
+                    formStatus.innerHTML = '<i class="fa-solid fa-circle-check"></i> 성공적으로 접수되었습니다! 빠른 시일 내 회신드리겠습니다.';
+                    formStatus.style.display = 'flex';
+                    partnershipForm.reset();
+                    showToast('제휴 문의가 전송되었습니다! 📩');
+                    setTimeout(() => {
+                        closeModal();
+                        formStatus.style.display = 'none';
+                    }, 3000);
+                } else {
+                    const data = await response.json();
+                    let errorMsg = '전송 중 오류가 발생했습니다. 다시 시도해 주세요.';
+                    if (data && data.errors && data.errors.length > 0) {
+                        errorMsg = data.errors.map(err => err.message).join(', ');
+                    }
+                    formStatus.className = 'form-status error';
+                    formStatus.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${errorMsg}`;
+                    formStatus.style.display = 'flex';
+                }
+            } catch (err) {
+                formStatus.className = 'form-status error';
+                formStatus.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> 네트워크 연결 문제로 전송에 실패했습니다.';
+                formStatus.style.display = 'flex';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+            }
+        });
+    }
+
     // --- 초기화 및 이벤트 리스너 ---
     initTheme();
 
