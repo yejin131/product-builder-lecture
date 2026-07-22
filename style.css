@@ -743,6 +743,27 @@ body {
     padding: 0 22px 18px 22px;
 }
 
+/* Comments Section */
+.comments-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 760px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.comments-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(16px);
+    transition: all 0.3s ease;
+    min-height: 250px;
+}
+
 /* Footer */
 .footer {
     border-top: 1px solid var(--card-border);
