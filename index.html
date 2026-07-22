@@ -3,117 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로또 6/45 행운 번호 추천기</title>
-    <meta name="description" content="AI 스타일의 깔끔하고 현대적인 로또 6/45 행운의 번호 추천 웹사이트. 한 번에 5세트의 중복 없는 당첨 번호를 생성해보세요.">
+    <title>제휴 및 비즈니스 문의 | Partnership Center</title>
+    <meta name="description" content="비즈니스 제휴, 서비스 협력, 마케팅 제안을 위한 공식 문의 창구입니다. Formspree 연동을 통해 신속하게 답변해 드립니다.">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-glow"></div>
-    
-    <main class="app-container">
-        <header class="app-header">
-            <div class="header-top">
-                <div class="badge"><i class="fa-solid fa-clover"></i> LUCKY LOTTO</div>
-                <div class="header-actions">
-                    <button id="header-contact-btn" class="icon-btn" title="제휴 문의" aria-label="제휴 문의">
-                        <i class="fa-solid fa-handshake"></i>
-                    </button>
-                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="테마 전환" title="다크/라이트 모드 전환">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div class="page-wrapper">
+        <!-- Navigation Header -->
+        <header class="navbar">
+            <div class="nav-container">
+                <a href="#" class="brand-logo">
+                    <div class="logo-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <span class="brand-name">PARTNERSHIP<span>HUB</span></span>
+                </a>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="테마 전환" title="테마 전환">
                         <i class="fa-solid fa-moon"></i>
                     </button>
                 </div>
             </div>
-            <h1>로또 번호 추천기</h1>
-            <p>오늘의 행운을 담아 중복 없는 번호 5세트를 생성합니다.</p>
         </header>
 
-        <section class="action-section">
-            <button id="generate-btn" class="btn btn-primary">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                <span>번호 생성하기 (5세트)</span>
-            </button>
-            <button id="copy-all-btn" class="btn btn-secondary" title="생성된 모든 번호 복사">
-                <i class="fa-regular fa-copy"></i>
-                <span>전체 복사</span>
-            </button>
-        </section>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Header Section -->
+            <section class="hero-section">
+                <div class="badge-pill">
+                    <i class="fa-solid fa-sparkles"></i> 비즈니스 협력 & 제휴 문의
+                </div>
+                <h1 class="hero-title">함께 더 큰 가치를 만드는 <br><span class="gradient-text">비즈니스 파트너십</span></h1>
+                <p class="hero-subtitle">
+                    새로운 성장의 기회를 함께 열어갈 파트너를 기다립니다.<br>
+                    제안 내용을 남겨주시면 전담 담당자가 24시간 이내 검토 후 회신해 드립니다.
+                </p>
+                
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">이내 신속 회신</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">1:1</span>
+                        <span class="stat-label">전담 매니저 검토</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">비밀 보장</span>
+                    </div>
+                </div>
+            </section>
 
-        <section class="results-section" id="results-container">
-            <!-- 5개 세트 카드가 JavaScript에 의해 동적으로 생성됩니다 -->
-            <div class="placeholder-card">
-                <i class="fa-solid fa-dice-five placeholder-icon"></i>
-                <p>위의 '번호 생성하기' 버튼을 눌러 행운의 번호를 확인해보세요!</p>
-            </div>
-        </section>
+            <!-- Form Card Section -->
+            <section class="form-container-section">
+                <div class="form-card" id="form-card">
+                    <div class="card-header">
+                        <h2>제휴 제안서 접수</h2>
+                        <p><span class="required-mark">*</span> 표시 항목은 필수 입력 항목입니다.</p>
+                    </div>
 
-        <footer class="app-footer">
-            <p>본 번호는 무작위로 추출되며 당첨을 보장하지 않습니다.</p>
-            <div class="footer-links">
-                <button id="open-contact-btn" class="footer-btn">
-                    <i class="fa-solid fa-handshake"></i> 제휴 문의
-                </button>
+                    <form id="partnership-form" action="https://formspree.io/f/xojglgan" method="POST" class="inquiry-form">
+                        
+                        <!-- Row 1: Company & Contact Name -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company_name">
+                                    <i class="fa-solid fa-building"></i> 회사/단체명 <span class="required-mark">*</span>
+                                </label>
+                                <input type="text" id="company_name" name="company" placeholder="예: 주식회사 에이전시" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact_name">
+                                    <i class="fa-solid fa-user"></i> 담당자 성함 / 직급 <span class="required-mark">*</span>
+                                </label>
+                                <input type="text" id="contact_name" name="contact_person" placeholder="예: 홍길동 팀장" required>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Email & Phone -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fa-solid fa-envelope"></i> 회신받을 이메일 <span class="required-mark">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" placeholder="partner@company.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">
+                                    <i class="fa-solid fa-phone"></i> 연락처 <span class="required-mark">*</span>
+                                </label>
+                                <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Category & Website/Proposal URL -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="category">
+                                    <i class="fa-solid fa-layer-group"></i> 제휴 유형 <span class="required-mark">*</span>
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="category" name="category" required>
+                                        <option value="" disabled selected>선택해 주세요</option>
+                                        <option value="광고 및 마케팅 제휴">📢 광고 및 마케팅 제휴</option>
+                                        <option value="서비스 및 콘텐츠 협력">🤝 서비스 및 콘텐츠 협력</option>
+                                        <option value="사업/기술 인프라 공유">⚙️ 사업/기술 인프라 공유</option>
+                                        <option value="투자 및 M&A 제안">📈 투자 및 M&A 제안</option>
+                                        <option value="기타 비즈니스 문의">💬 기타 비즈니스 문의</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="website_url">
+                                    <i class="fa-solid fa-link"></i> 회사 웹사이트 / 제안서 링크
+                                </label>
+                                <input type="url" id="website_url" name="website_url" placeholder="https://example.com (선택)">
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Detailed Message -->
+                        <div class="form-group">
+                            <label for="message">
+                                <i class="fa-solid fa-align-left"></i> 제안 내용 및 상세 문의 <span class="required-mark">*</span>
+                            </label>
+                            <textarea id="message" name="message" rows="5" placeholder="제휴 목표, 핵심 제안 내용, 협력 방안 등을 자유롭게 작성해 주세요." required></textarea>
+                            <div class="char-count"><span id="char-num">0</span>자 입력</div>
+                        </div>
+
+                        <!-- Privacy Agreement Checkbox -->
+                        <div class="privacy-box">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="privacy_agree" required>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">
+                                    개인정보 수집 및 이용에 동의합니다. <span class="required-mark">*</span>
+                                </span>
+                            </label>
+                            <button type="button" id="toggle-privacy-detail" class="text-link-btn">약관 보기</button>
+                        </div>
+
+                        <div id="privacy-detail" class="privacy-detail-box hidden">
+                            <p><strong>개인정보 수집 및 이용 안내</strong></p>
+                            <ul>
+                                <li><strong>수집 항목:</strong> 회사명, 담당자명, 이메일, 연락처, 제안 내용</li>
+                                <li><strong>수집 목적:</strong> 제휴 문의 검토 및 회신</li>
+                                <li><strong>보유 기간:</strong> 문의 처리 후 1년간 보관 후 파기</li>
+                            </ul>
+                        </div>
+
+                        <!-- Form Status Feedback -->
+                        <div id="form-status" class="form-status"></div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submit-btn" class="submit-btn">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>제휴 문의 제출하기</span>
+                        </button>
+                    </form>
+
+                    <!-- Success State View (Hidden by default) -->
+                    <div id="success-view" class="success-view hidden">
+                        <div class="success-icon-wrap">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h3>제휴 문의가 접수되었습니다!</h3>
+                        <p>소중한 제안을 남겨주셔서 감사합니다.<br>담당자가 내용 검토 후 작성해주신 이메일로 24시간 이내 회신드리겠습니다.</p>
+                        
+                        <div class="receipt-card">
+                            <div class="receipt-row">
+                                <span class="r-label">접수 번호</span>
+                                <span class="r-val" id="receipt-id">#REQ-82914</span>
+                            </div>
+                            <div class="receipt-row">
+                                <span class="r-label">상태</span>
+                                <span class="r-val badge-success">검토 대기 중</span>
+                            </div>
+                        </div>
+
+                        <button type="button" id="reset-form-btn" class="btn-secondary">
+                            <i class="fa-solid fa-rotate-left"></i> 추가 문의 작성하기
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="section-title">
+                    <h2>자주 묻는 질문 (FAQ)</h2>
+                    <p>제휴 관련 자주 묻는 질문들을 모았습니다.</p>
+                </div>
+
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Q. 제안서 검토 및 답변까지 얼마나 걸리나요?</span>
+                            <i class="fa-solid fa-plus faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>접수된 모든 문의는 담당 부서에서 검토하며, 영업일 기준 24~48시간 이내에 작성해주신 이메일 또는 연락처로 회신해 드립니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Q. 별도의 첨부파일(PDF/PPT)은 어떻게 전달하나요?</span>
+                            <i class="fa-solid fa-plus faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>제안서 링크 항목에 구글 드라이브, 노션, Dropbox 등 공유 가능한 링크를 남겨주시거나, 1차 문의 접수 후 회신 이메일을 통해 첨부파일을 보내주시면 됩니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Q. 개인정보 및 제안 내용은 안전하게 보호되나요?</span>
+                            <i class="fa-solid fa-plus faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>네, 접수된 모든 제안 내용과 회사 정보는 비밀유지 원칙에 따라 철저히 보호되며, 제휴 검토 목적 이외의 용도로는 사용되지 않습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <p>&copy; 2026 PARTNERSHIP HUB. All rights reserved.</p>
+                <div class="footer-powered">
+                    Powered by <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>
+                </div>
             </div>
         </footer>
-    </main>
-
-    <!-- 제휴 문의 모달 -->
-    <div id="contact-modal" class="modal" aria-hidden="true">
-        <div class="modal-overlay" id="modal-overlay"></div>
-        <div class="modal-container">
-            <button id="modal-close-btn" class="modal-close-btn" aria-label="닫기">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="modal-header">
-                <div class="modal-badge"><i class="fa-solid fa-handshake"></i> PARTNERSHIP</div>
-                <h2>제휴 및 비즈니스 문의</h2>
-                <p>프로젝트 제휴 및 비즈니스 관련 문의를 남겨주시면 빠르게 답변해 드립니다.</p>
-            </div>
-            <form id="partnership-form" action="https://formspree.io/f/xojglgan" method="POST" class="contact-form">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="contact-name"><i class="fa-regular fa-user"></i> 이름 / 회사명 <span class="required">*</span></label>
-                        <input type="text" id="contact-name" name="name" placeholder="홍길동 (또는 주식회사 OO)" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-email"><i class="fa-regular fa-envelope"></i> 회신 이메일 <span class="required">*</span></label>
-                        <input type="email" id="contact-email" name="email" placeholder="example@company.com" required>
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="contact-phone"><i class="fa-solid fa-phone"></i> 연락처</label>
-                        <input type="tel" id="contact-phone" name="phone" placeholder="010-0000-0000">
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-category"><i class="fa-solid fa-layer-group"></i> 문의 유형</label>
-                        <select id="contact-category" name="category">
-                            <option value="광고/마케팅 제휴">광고/마케팅 제휴</option>
-                            <option value="서비스/콘텐츠 제휴">서비스/콘텐츠 제휴</option>
-                            <option value="사업 및 기술 협력">사업 및 기술 협력</option>
-                            <option value="기타 문의">기타 문의</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="contact-message"><i class="fa-regular fa-comment-dots"></i> 문의 내용 <span class="required">*</span></label>
-                    <textarea id="contact-message" name="message" rows="4" placeholder="제휴 제안 내용 및 상세 문의 사항을 작성해 주세요." required></textarea>
-                </div>
-                <div id="form-status" class="form-status"></div>
-                <button type="submit" id="submit-btn" class="btn btn-primary btn-submit">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>문의하기</span>
-                </button>
-            </form>
-        </div>
     </div>
 
-    <div id="toast" class="toast">번호가 클립보드에 복사되었습니다!</div>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
     <script src="main.js"></script>
 </body>
